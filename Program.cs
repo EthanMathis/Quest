@@ -33,6 +33,38 @@ namespace Quest
                 4, 20
             );
 
+            Challenge favoriteGame = new Challenge(
+                @"What is my favorite video game?
+    1) Super Mario Bros
+    2) Fortnite
+    3) Halo
+    4) Tetris
+",
+                 3, 25
+            );
+
+            Challenge favoriteColor = new Challenge(
+                @"What is your favorite color?
+    1) Red
+    2) Blue
+    3) Orange
+    4) Green
+",
+                2, 20
+            );
+
+            Challenge bestSport = new Challenge(
+                @"What is the best sport to watch on TV?
+    1) Football
+    2) Hockey
+    3) Baseball
+    4) Soccer
+",
+                 1, 40
+            );
+
+
+
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
 
@@ -58,13 +90,16 @@ namespace Quest
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-            List<Challenge> challenges = new List<Challenge>()
+            List<Challenge> AllChallenges = new List<Challenge>()
             {
                 twoPlusTwo,
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                favoriteGame,
+                favoriteColor,
+                bestSport
             };
 
             string Description = theAdventurer.GetDescription();
@@ -89,7 +124,14 @@ namespace Quest
             // {
             //     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
             // }
-            RunGame(challenges, theAdventurer);
+            RunGame(AllChallenges, theAdventurer);
+        }
+
+        static int RandomNumber()
+        {
+            Random r = new Random();
+            int RandomNumber = r.Next(0, 8);
+            return RandomNumber;
         }
 
         static void RunGame(List<Challenge> challenges, Adventurer theAdventurer)
@@ -103,8 +145,31 @@ namespace Quest
             //  If an Adventurer has an Awesomeness less than the min, they are terrible
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
+            List<Challenge> OnlyFive = new List<Challenge>();
 
-            foreach (Challenge challenge in challenges)
+            List<int> RandomNumberList = new List<int>();
+
+            while (RandomNumberList.Count < 5)
+            {
+                int NumberToBeAdded = RandomNumber();
+
+                if (!RandomNumberList.Contains(NumberToBeAdded))
+                {
+                    RandomNumberList.Add(NumberToBeAdded);
+                }
+                else
+                {
+                    NumberToBeAdded = RandomNumber();
+                }
+            }
+
+            foreach (int Number in RandomNumberList)
+            {
+                OnlyFive.Add(challenges[Number]);
+            }
+
+
+            foreach (Challenge challenge in OnlyFive)
             {
                 challenge.RunChallenge(theAdventurer);
             }
