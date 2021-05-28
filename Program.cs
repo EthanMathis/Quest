@@ -124,6 +124,9 @@ namespace Quest
                 Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
             }
 
+            Prize Ball = new Prize("Blue Bouncy Ball");
+            Ball.ShowPrize(theAdventurer);
+
             Console.WriteLine("Would you like to try again?");
             Console.WriteLine(@"
 1) Yes
