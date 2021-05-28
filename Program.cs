@@ -52,8 +52,9 @@ namespace Quest
             };
 
             Robe BlueRobe = new Robe(Colors, 42);
+            Hat BlindingHat = new Hat(10);
 
-            Adventurer theAdventurer = new Adventurer(Name, BlueRobe);
+            Adventurer theAdventurer = new Adventurer(Name, BlueRobe, BlindingHat);
 
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
